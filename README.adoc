@@ -1,0 +1,65 @@
+# Bildschirmsteuerung für OV Eingang
+v0.1, 2024
+
+Im Eingang des link:https://de.wikipedia.org/wiki/THW-Ortsverband[Ortsverbands] ist ein großer Monitor montiert, der abhängig von der Situation unterschiedliche Informationen anzeigen soll.
+
+Mithilfe des Codes in diesem Repository wird jene Funktionalität umgesetzt.
+
+[toc]
+
+## Beschreibung der Ist-Situation
+Technisch handelt es sich um einen link:https://de.wikipedia.org/wiki/High_Definition_Television[HD-Bildschirm].
+Über HDMI erhält er das Bild von einem link:https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/[Raspberry Pi 3 B+].
+Dieser kleine PC hängt im LAN.
+Er hat weder Tastatur noch Maus angeschlossen.
+
+Unter den aktiven Helfern und anwesenden Ehemaligen wurde eine Umfrage durchgeführt, was sie idealerweise auf dem Bildschirm sehen wollen.
+Hierbei wurden fünf unterschiedliche Szenarien identifiziert:
+
+1. Einsatz/ Alarmierung
+2. wöchentlicher OV-Abend
+3. Veranstaltung ohne Gäste (z.B. Übung, Arbeitsdienst)
+4. Veranstaltung mit Gästen (z.B. Lehrgang, Prüfungen, TdoT)
+5. Zeit außerhalb von 1-4
+
+## allgemeine Anforderungen
+1. Das Gerät soll ausschließlich über LAN und nicht über WLAN betrieben werden, um das Risiko eines digitalen Einbruchs zu verhindern.
+Es soll ausschließlich über den Proxy des Ortsverbands auf das Internet zugegriffen werden.
+
+2. TBD
+
+Basis: https://github.com/Dustin1358/Raspberry-Pi-Divera-Monitor
+// Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+
+// Visuals
+// Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+
+## Installation
+Siehe link:./setup/README.adoc
+
+// Usage
+// Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+
+// Support
+// Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+
+// Roadmap
+// If you have ideas for releases in the future, it is a good idea to list them in the README.
+
+// Contributing
+// State if you are open to contributions and what your requirements are for accepting them.
+
+// For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+
+// You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+
+## Authors and acknowledgment
+// Show your appreciation to those who have contributed to the project.
+
+Ohne die gute Erklärung in https://github.com/Dustin1358/Raspberry-Pi-Divera-Monitor[Raspberry-Pi-Divera-Monitor] wäre dies niemals möglich gewesen.
+
+## Lizenz
+Siehe link:./LICENSE
+
+// Project status
+// If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.

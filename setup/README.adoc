@@ -1,0 +1,18 @@
+# Installation
+
+// Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+virtuelle Umgebung, die alle Abhängigkeiten an einem Ort bündelt (für mehr Informationen siehe https://docs.python.org/3/tutorial/venv.html).
+
+[source,shell]
+----
+python3 -m venv .venv <1>
+source .venv/bin/activate
+pip install --upgrade pip <2>
+pip install -r requirements.txt <3>
+----
+<1> Erstelle virtuelle Umgebung und aktiviere sie.
+<2> Aktualisiere https://docs.python.org/3/installing/index.html#installing-index[PIP] auf die neueste Version, um von allen Bugfixes zu profitieren.
+<3> Installiere alle notwendigen Pakete.
+
+Anschließend müssen die Konfigurationen angepasst werden, um z.B. den richtigen Tag für den OV-Abend einzustellen.
