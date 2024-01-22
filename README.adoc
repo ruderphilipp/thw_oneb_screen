@@ -1,11 +1,11 @@
+// see https://gist.github.com/dcode/0cfbf2699a1fe9b46ff04c41721dda74 and the related comments for tipps to GitHub Flavored Asciidoc
 # Bildschirmsteuerung für OV Eingang
 v0.1, 2024
+:toc: preamble
 
 Im Eingang des link:https://de.wikipedia.org/wiki/THW-Ortsverband[Ortsverbands] ist ein großer Monitor montiert, der abhängig von der Situation unterschiedliche Informationen anzeigen soll.
 
 Mithilfe des Codes in diesem Repository wird jene Funktionalität umgesetzt.
-
-[toc]
 
 ## Beschreibung der Ist-Situation
 Technisch handelt es sich um einen link:https://de.wikipedia.org/wiki/High_Definition_Television[HD-Bildschirm].
