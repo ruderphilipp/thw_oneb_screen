@@ -1,8 +1,76 @@
-# Installation
+= Installation
+:doctype: article
+:license-type: MIT
+:source-highlighter: rouge
+:rouge-style: github
+:icons: font
+:toc: preamble
+
+// GitHub doesn't render asciidoc exactly as intended, so we adjust settings
+ifdef::env-github[]
+
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+
+endif::[]
 
 // Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-virtuelle Umgebung, die alle Abhängigkeiten an einem Ort bündelt (für mehr Informationen siehe https://docs.python.org/3/tutorial/venv.html).
+Im Folgenden wird beschrieben, wie die Software heruntergeladen, installiert und konfiguriert wird.
+
+== Software herunterladen
+Zuerst muss ein Terminal geöffnet werden.
+Dies kann in der grafischen Oberfläche z.B. durch die Tastenkombination +++<kbd>STRG</kbd>+<kbd>ALT</kbd>+<kbd>t</kbd>+++ geschehen.
+
+=== Linux-Software
+Im ersten Schritt werden die notwendigen Hilfsprogramme aus den Standardrepository der Linuxdistribution installiert.
+[source,shell]
+----
+# download and install software <1>
+sudo apt install unclutter cec-utils
+----
+1. Mittels **unclutter** wird der Mauszeiger ausgeblendet. **Cec-utils** wird verwendet, um einige Fernseher ein- bzw. auszuschalten.
+
+=== Quellcode
+Anschließend mit `cd` zum Zielverzeichnis navigieren, wo der Code aus diesem Projekt lokal abgespeichert werden soll.
+Code von Github wird idealerweise "geklont" und nicht nur als ZIP heruntergeladen.
+Dadurch bleibt die Information über die Quelle erhalten, sodass bei Updates jene automatisch heruntergeladen werden können.
+
+[source,shell]
+----
+# download project files
+git clone GITHUB_HTTPS_LINK <1>
+----
+1. ersetze `GITHUB_HTTPS_LINK` durch die richtige URL, die bei Github zum Klonen
+   via HTTPS angezeigt wird.
+
+Nachdem der Download abgeschlossen ist, bitte mit `cd` in das neu erstellte Verzeichnis wechseln.
+Dort angekommen, können nun die programmspezifischen Anpassungen durchgeführt werden.
+
+=== Shell-Skript
+Zuerst wird eine Datei in den Autostart des Benutzers hinzugefügt.
+Diese Datei enthält die Befehle, um den Bildschirm an- (```screen on```) und auszuschalten (```screen off```).
+Leider halten sich einige Bildschirm nicht an die Standards.
+Falls die Kommandos zu An-/Ausschalten des Bildschirms nicht funktionieren sollten, so kann in dieser Datei noch weitere Möglichkeiten gefunden werden.
+
+[source,shell]
+----
+# add new function "screen" to .bashrc <1>
+echo "source $(pwd)/screen_controller.sh" >> ~/.bashrc
+----
+1. Skript als zusätzliche Zeile am Ende der Datei `.bashrc` hinzufügen.
+
+[CAUTION]
+Beim Ausführen von ```screen off``` wird der Bildschirm ausgeschaltet und Eingaben an der Tastatur werden nicht mehr erkannt. Damit weitergearbeitet werden kann, muss entweder per SSH von außen der Bildschirm wieder eingeschaltet oder der Raspberry Pi neu gestartet werden.
+
+=== Python einrichten
+Über eine virtuelle Umgebung werden in Pyton alle Abhängigkeiten an einem Ort bündelt.
+So werden notwendige Pakete direkt in den Ordner heruntergeladen und nicht global installiert.
+Andere Programme werden somit nicht beeinflusst oder durch falsche Versionen einer Bibliothek gestört.
+Für mehr Informationen siehe <https://docs.python.org/3/tutorial/venv.html>.
 
 [source,shell]
 ----
