@@ -1,13 +1,30 @@
 // see https://gist.github.com/dcode/0cfbf2699a1fe9b46ff04c41721dda74 and the related comments for tipps to GitHub Flavored Asciidoc
-# Bildschirmsteuerung für OV Eingang
-v0.1, 2024
+:doctype: article
+:license-type: MIT
+:source-highlighter: rouge
+:rouge-style: github
+:icons: font
 :toc: preamble
 
+// GitHub doesn't render asciidoc exactly as intended, so we adjust settings
+ifdef::env-github[]
+
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+
+endif::[]
+
+= Bildschirmsteuerung für OV Eingang
+v0.1, 2024
+q
 Im Eingang des link:https://de.wikipedia.org/wiki/THW-Ortsverband[Ortsverbands] (kurz "OV") ist ein großer Monitor montiert, der abhängig von der Situation unterschiedliche Informationen anzeigen soll.
 
 Mithilfe des Codes in diesem Repository wird jene Funktionalität umgesetzt.
 
-## Beschreibung der Ist-Situation
+== Beschreibung der Ist-Situation
 Technisch handelt es sich um einen link:https://de.wikipedia.org/wiki/High_Definition_Television[HD-Bildschirm].
 Über HDMI erhält er das Bild von einem link:https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/[Raspberry Pi 3 B+].
 Dieser kleine PC hängt im LAN.
@@ -26,8 +43,8 @@ Das folgende Bild zeigt die Zusammenhänge in einer grafischen Darstellung.
 
 image::states.png[Zustände und Übergänge]
 
-## Anforderungen
-### allgemein
+== Anforderungen
+=== allgemein
 * Das Gerät soll ausschließlich über LAN und nicht über WLAN betrieben werden, um das Risiko eines digitalen Einbruchs zu verhindern.
   Es soll ausschließlich über den Proxy des Ortsverbands auf das Internet zugegriffen werden.
 * Als Datenablage und Informationsquellen soll auf bestehende Lösungen des OV zurückgegriffen werden.
@@ -40,7 +57,7 @@ image::states.png[Zustände und Übergänge]
 * Zugangsdaten sind lokal zu halten und niemals Teil dieses Repositories!
   Sie sind weder hartverdrahtet im Code noch als Konfigurationsdatei im Repository einsehbar. 
 
-### Szenario 1: bei Alarmierung
+=== Szenario 1: bei Alarmierung
 Kernaufgabe jeder Hilfsorganisation ist der Einsatz bei einer Alarmierung.
 Für eine Kommunikation mit den Helfern wird https://www.divera247.com/[DIVERA 24/7®] eingesetzt.
 So können im Einsatzfall die Personen der notwendigen Gruppen benachrichtigt werden und über das Mobiltelefon eine Rückmeldung geben.
@@ -51,7 +68,7 @@ So können im Einsatzfall die Personen der notwendigen Gruppen benachrichtigt we
 * Sollte der Bildschirm ausgeschaltet sein, so soll er für die Zeit des Einsatzes eingeschaltet werden, damit die Informationen von den Helfern gesehen werden können.
 * Die Details der anzuzeigenden Informationen werden innerhalb von Divera konfiguriert und sind nicht Teil dieser Implementierung.
 
-### Szenario 2: OV-Abend
+=== Szenario 2: OV-Abend
 Einmal pro Woche findet im OV ein gemeinsamer Abend statt.
 Hier werden Übungen durchgeführt, Fahrzeuge und Geräte gewartet, Veranstaltungen vorbereitet und in gemütlicher Runde die Vergangenheit reflektiert oder Neues geplant.
 
@@ -71,7 +88,7 @@ Zusätzlich gibt es einen Stammtisch der ehemals aktiven Rentner, die weiterhin 
 * Organigramm je Fachgruppe inkl. Fachbefähigungen
 * ausgeliehene Geräte (seit wann und an wen)
 
-### Szenario 3: Veranstaltung mit Gästen
+=== Szenario 3: Veranstaltung mit Gästen
 Veranstaltungen mit externen Gästen sind beispielsweise Lehrgänge (z.B. mit Feuerwehr oder Rotkreuz), Tag der offenen Tür oder THW-interne Prüfungen (Grundausbildung, Bereichsausbildung) mit Teilnehmern aus mehreren Standorten.
 Die Teilnehmer kennen somit den OV nicht, weder vom Aufgabenbereich/ Leistungsfähigkeit noch von den lokalen Gegebenheiten.
 
@@ -89,7 +106,7 @@ Zielgruppe sind ortsfremde Personen.
 * Bei THW-externer Veranstaltung: Informationen zum OV (Fachgruppen, Kurzvorstellung/ Aufgaben je FG, Werbevideos)
 * Personalstärke (d.h. Anzahl Junghelfer/ Jugend, Anzahl Aktive), Anzahl Einsätze in den letzten 12 Monaten
 
-### Szenario 4: Veranstaltung ohne Gäste
+=== Szenario 4: Veranstaltung ohne Gäste
 Interne Veranstaltungen sind zum Beispiel Übungen, Arbeitsdienste, geplante technische Hilfeleistungen oder Ausflüge.
 Sie können am wöchentlichen OV-Abend stattfinden oder an anderen Wochentagen.
 Die Länge einer Veranstaltung kann von einer Stunde bis mehrere Tage sein. 
@@ -103,7 +120,7 @@ Zielgruppe sind die aktiven Helfer sowie die Jugend.
 * Inhalt/ Tätigkeiten/ Beschreibung
 * falls möglich, Zusagen (z.B. für Planung von Verpflegung)
 
-### Szenario 5: restliche Zeit
+=== Szenario 5: restliche Zeit
 In der Zeit, wo kein anderes Szenario zutrifft, soll zum Zwecke des Stromsparens der Bildschirm ausgeschaltet sein.
 
 // Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
@@ -111,7 +128,7 @@ In der Zeit, wo kein anderes Szenario zutrifft, soll zum Zwecke des Stromsparens
 // Visuals
 // Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-## Installation
+== Installation
 Siehe link:++./setup/README.adoc++
 
 // Usage
@@ -130,14 +147,14 @@ Siehe link:++./setup/README.adoc++
 
 // You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
 
-## Danksagung
+== Danksagung
 // Show your appreciation to those who have contributed to the project.
 
 Ohne die gute fachliche Erklärung und den Code in https://github.com/Dustin1358/Raspberry-Pi-Divera-Monitor[Raspberry-Pi-Divera-Monitor] wäre dieses Projekt niemals möglich gewesen.
 
 Auch das Vertrauen in die Sache sowie die Unterstützung der Kameraden und OV-Stab bei Diskussionen, Umfragen sowie Bewertung erster Prototypen war eine hohe Motivation.
 
-## Lizenz
+== Lizenz
 Siehe link:++./LICENSE++
 
 // Project status
