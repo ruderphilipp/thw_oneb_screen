@@ -13,15 +13,25 @@ if __name__ == "__main__":
 
     load_dotenv()
 
-    divera = os.getenv('DIVERA_ACCESS_KEY')
-    logging.debug('Divera Access Key: %s' % divera)
+    divera_api_key = os.getenv('DIVERA_ACCESS_KEY')
+    logging.debug('Divera Access Key: %s' % divera_api_key)
+    divera_dashboard = os.getenv('DIVERA_DASHBOARD_URL')
+    logging.debug('Divera Dashboard: %s' % divera_dashboard)
+    service_webpage = os.getenv('SERVICE_URL')
+    logging.debug('Homepage (Service): %s' % service_webpage)
+
 
     ordered_states = [
-        states.Alarm(divera), # prio 1: show dashboard with alarm infos
-        states.Service(),     # at regular service show internal infos etc.
-        states.Event(),       # at a event with external guest show other stuff
-        states.Update(),      # do not forget to keep the system up-to-date
-        states.BlackScreen()  # otherwise screen off and waiting
+        # prio 1: show dashboard with alarm infos
+        states.Alarm(divera_api_key, divera_dashboard),
+        # at regular service show internal infos etc.
+        states.Service(service_webpage),
+        # at a event with external guest show other stuff
+        states.Event(),
+        # do not forget to keep the system up-to-date
+        states.Update(),
+        # otherwise screen off and waiting
+        states.BlackScreen()
     ]
 
     active_state = states.NoOp()
